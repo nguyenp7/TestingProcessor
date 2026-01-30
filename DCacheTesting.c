@@ -5,7 +5,7 @@
 
 #define MaxArraySize 65536
 #define Iterations 10000000
-long double test_cache(int size) {
+long double run(int size) {
     struct timespec s, e;
     int *arr = malloc(size*4);
     for(int i = 0; i < size; ++i){
@@ -41,7 +41,7 @@ int main() {
     
     for (int size = 2048; size <= MaxArraySize; size *= 2) {
         double kb = (sizeof(int) * size) / 1024.0;
-        long double ns_per_access = test_cache(size);
+        long double ns_per_access = run(size);
         printf("%d elements (%.1f KB) %.5Lf ns per access\n", size, kb, ns_per_access);
     }
     printf("------------------------------------\n");
